@@ -1,0 +1,4 @@
+package-lock.json
+node_module/*
+idea/*
+**/node_modules
