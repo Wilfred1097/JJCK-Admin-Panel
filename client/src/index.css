@@ -1,0 +1,27 @@
+/* Default styles */
+.flex-md-column {
+  flex-direction: column;
+}
+
+/* Mobile styles */
+.mobile-open {
+  display: none; /* Initially hide on larger screens */
+}
+
+/* Small and medium screens */
+@media (max-width: 600px) {
+  .flex-md-column {
+    flex-direction: row; /* Change to row layout for small and medium screens */
+  }
+  
+  .mobile-open {
+    display: block; /* Display on smaller screens when mobile nav is open */
+  }
+}
+
+/* Large screens */
+@media (min-width: 601px) {
+  .mobile-open {
+    display: none; /* Hide on larger screens */
+  }
+}
