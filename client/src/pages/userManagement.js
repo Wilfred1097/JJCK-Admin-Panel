@@ -118,11 +118,11 @@ const UserManagement = () => {
           {/* Main Content Area */}
           <Col md={12} className="p-4" style={{ backgroundColor: 'white' }}>
             <div className="table-responsive">
-              <Table striped bordered hover responsive>
+              <Table bordered hover responsive>
                 <thead className='table-primary'>
                   <tr>
-                    <th>User ID</th>
-                    <th>Complete Name</th>
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
                     <th>Birthdate</th>
                     <th>Address</th>
                     <th>Email</th>

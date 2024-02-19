@@ -286,7 +286,7 @@ app.post('/updateListing', async (req, res) => {
 app.get('/tour-requests', async (req, res) => {
   try {
     // Retrieve all users from the users table
-    const [users] = await pool.promise().query('SELECT * FROM `tour_request_view` ORDER BY request_Id');
+    const [users] = await pool.promise().query('SELECT * FROM tour_request_view');
     
     // Send the users data as a response
     res.status(200).json(users);

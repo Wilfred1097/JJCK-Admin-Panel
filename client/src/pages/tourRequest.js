@@ -73,7 +73,7 @@ function TourRequestPage() {
                         </Form>
                     </Col>
                 </Row>
-                <Table responsive striped bordered hover className="w-100">
+                <Table responsive bordered hover className="w-100">
                     <thead>
                         <tr>
                             <th>Request ID</th>
