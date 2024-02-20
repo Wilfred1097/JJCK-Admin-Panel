@@ -44,11 +44,12 @@ const Registration = () => {
   });
 
   return (
-    <Container style={{ display: 'block', justifyContent: 'center', alignContent: 'center', marginTop: '100px'}}>
+    <Container style={{ display: 'block', justifyContent: 'center', alignContent: 'center', marginTop: '100px', width: '60rem'}}>
       <Row className="justify-content-md-center mt-5 p-3">
         <Col xs={12} md={6}>
           <Form onSubmit={formik.handleSubmit}>
-            <h2 className="text-center">Registration</h2>
+          <h2 className="text-center">JJCK Realty Services</h2>
+            <h4 className="text-center">Admin Signup</h4>
 
             <Form.Group controlId="fullName">
               <Form.Label>Full Name</Form.Label>
@@ -146,12 +147,13 @@ const Registration = () => {
               </Form.Control.Feedback>
             </Form.Group>
 
-            <Button variant="primary" type="submit" className={`m-2 ${formik.touched.email || formik.touched.password ? '' : 'btn-block'}`}>
+            <Button variant="success" type="submit" className={`m-2 w-100 mt-4 ${formik.touched.email || formik.touched.password ? '' : 'btn-block'}`}>
               Signup
-            </Button>
-            <Button as={Link} to="/" variant='success' className='m-2 p-auto'>
+            </Button><hr/>
+            <p style={{fontSize: '14px', textAlign: 'center'}}>Already have an account? <Link as={Link} to="/" style={{color: 'green'}}>Login here</Link></p>
+            {/* <Button as={Link} to="/" variant='success' className='m-2 p-auto'>
               Login
-            </Button>
+            </Button> */}
           </Form>
         </Col>
       </Row>

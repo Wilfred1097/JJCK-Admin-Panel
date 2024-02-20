@@ -58,13 +58,13 @@ const App = () => {
   };
 
   return (
-    <Container style={{ display: 'block', justifyContent: 'center', alignContent: 'center', marginTop: '170px'}}>
+    <Container style={{ display: 'block', justifyContent: 'center', alignContent: 'center', marginTop: '170px', width: '60rem'}}>
       <Row className="justify-content-md-center mt-5">
         <Col xs={12} md={6}>
           <Card className="p-3 border-0" style={{ background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', borderRadius: '15px', boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)' }}>
             <Card.Body>
               <h2 className="text-center">JJCK Realty Services</h2>
-              <h3 className="text-center">Admin Login</h3>
+              <h4 className="text-center">Admin Login</h4>
               <Form onSubmit={handleLogin}>
                 <Form.Group controlId="formBasicEmail">
                   <Form.Label>Email address</Form.Label>
@@ -94,12 +94,13 @@ const App = () => {
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Button variant="primary" type="submit" className={`m-2 ${validationErrors.email || validationErrors.password ? '' : 'btn-block'}`}>
+                <Button variant="success" type="submit" className={`m-2, w-100 mt-4 ${validationErrors.email || validationErrors.password ? '' : 'btn-block'}`}>
                   Login
-                </Button>
-                <Button as={Link} to="/registration" variant='success' className='m-2 p-auto'>
+                </Button><hr/>
+                <p style={{fontSize: '14px', textAlign: 'center'}}>No Account Yet? <Link as={Link} to="/registration" style={{color: 'green'}}>Sign up here</Link></p>
+                {/* <Button as={Link} to="/registration" variant='success' className='m-2 p-auto'>
                   Register
-                </Button>
+                </Button> */}
               </Form>
             </Card.Body>
           </Card>

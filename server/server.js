@@ -292,7 +292,7 @@ app.get('/tour-requests', async (req, res) => {
     res.status(200).json(users);
   } catch (error) {
     console.error('Error fetching users:', error.message);
-    res.status(500).json({ message: 'Internal Server Error' });
+    res.status(500).json({ message: 'Internal Server Error' });s
   }
 });
 
