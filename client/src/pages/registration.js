@@ -44,7 +44,7 @@ const Registration = () => {
   });
 
   return (
-    <Container>
+    <Container style={{ display: 'block', justifyContent: 'center', alignContent: 'center', marginTop: '100px'}}>
       <Row className="justify-content-md-center mt-5 p-3">
         <Col xs={12} md={6}>
           <Form onSubmit={formik.handleSubmit}>
@@ -147,7 +147,7 @@ const Registration = () => {
             </Form.Group>
 
             <Button variant="primary" type="submit" className={`m-2 ${formik.touched.email || formik.touched.password ? '' : 'btn-block'}`}>
-              Register
+              Signup
             </Button>
             <Button as={Link} to="/" variant='success' className='m-2 p-auto'>
               Login

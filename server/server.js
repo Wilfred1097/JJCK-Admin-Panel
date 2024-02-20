@@ -127,7 +127,7 @@ app.post('/login', async (req, res) => {
       }
 
       // Sign a JWT with a secret key including userId in the payload
-      const token = jwt.sign({ userId: user[0].id, email: user[0].email }, process.env.JWT_SECRET, { expiresIn: '1d' });
+      const token = jwt.sign({ userId: user[0].id, name: user[0].complete_name }, process.env.JWT_SECRET, { expiresIn: '1d' });
 
       // Set the token as an HTTP-only cookie
       res.cookie('token', token, { httpOnly: true, maxAge: 600000 }); // 10 minutes expiration in milliseconds
@@ -292,6 +292,37 @@ app.get('/tour-requests', async (req, res) => {
     res.status(200).json(users);
   } catch (error) {
     console.error('Error fetching users:', error.message);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+app.post('/deleteListing', async (req, res) => {
+  try {
+    // Extract the lot ID from the request body
+    const { lotId } = req.body;
+
+    // Construct the query to delete the listing
+    const query = 'DELETE FROM lot_table WHERE lot_Id = ?';
+    const values = [lotId];
+
+    // Execute the query
+    pool.execute(query, values, (error, results) => {
+      if (error) {
+        console.error('Error deleting listing:', error.message);
+        res.status(500).json({ message: 'Error deleting listing', error: error.message });
+        return;
+      }
+
+      // Check if any row was affected by the delete operation
+      if (results.affectedRows > 0) {
+        res.status(200).json({ message: 'Listing deleted successfully' });
+      } else {
+        // No listing found with the given lot ID
+        res.status(404).json({ message: 'Listing not found' });
+      }
+    });
+  } catch (error) {
+    console.error('Error handling deleteListing request:', error.message);
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });

@@ -4,8 +4,8 @@ import { Container, Form, Button, Row, Col, Card } from 'react-bootstrap';
 import { LoginvalidationSchema } from './validation/Validation';
 import Cookies from 'js-cookie';
 import axios from 'axios';
-// import { useNavigate, Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const App = () => {
   const [email, setEmail] = useState('');
@@ -58,10 +58,10 @@ const App = () => {
   };
 
   return (
-    <Container>
+    <Container style={{ display: 'block', justifyContent: 'center', alignContent: 'center', marginTop: '170px'}}>
       <Row className="justify-content-md-center mt-5">
         <Col xs={12} md={6}>
-          <Card className="p-3 border-0" style={{ background: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(10px)', borderRadius: '15px', boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)' }}>
+          <Card className="p-3 border-0" style={{ background: 'rgba(255, 255, 255, 0.9)', backdropFilter: 'blur(10px)', borderRadius: '15px', boxShadow: '0 0 15px rgba(0, 0, 0, 0.1)' }}>
             <Card.Body>
               <h2 className="text-center">JJCK Realty Services</h2>
               <h3 className="text-center">Admin Login</h3>
@@ -97,9 +97,9 @@ const App = () => {
                 <Button variant="primary" type="submit" className={`m-2 ${validationErrors.email || validationErrors.password ? '' : 'btn-block'}`}>
                   Login
                 </Button>
-                {/* <Button as={Link} to="/registration" variant='success' className='m-2 p-auto'>
+                <Button as={Link} to="/registration" variant='success' className='m-2 p-auto'>
                   Register
-                </Button> */}
+                </Button>
               </Form>
             </Card.Body>
           </Card>

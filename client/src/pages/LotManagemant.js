@@ -8,6 +8,7 @@ const LotManagement = () => {
   const [lotListings, setLotListings] = useState([]);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [formData, setFormData] = useState({
     block: '',
     lotNumber: '',
@@ -221,6 +222,42 @@ const LotManagement = () => {
     setSelectedImage(imageData);
   };
 
+  const toggleDeleteModal = (lotId) => {
+    setSelectedLotId(lotId); // Set the selected lot ID for deletion
+    setShowDeleteModal(true); // Show the delete confirmation modal
+  };
+
+  const handleDelete = async () => {
+    try {
+      // Send a POST request to the deleteListing endpoint
+      const response = await fetch('http://localhost:3001/deleteListing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ lotId: selectedLotId }), // Send selectedLotId in the request body
+      });
+  
+      // Check the response status
+      if (response.ok) {
+        console.log('Listing deleted successfully');
+        // Hide the delete confirmation modal after deletion
+        setShowDeleteModal(false);
+        // Reload table data
+        fetchLotListings();
+      } else if (response.status === 404) {
+        console.error('Listing not found');
+        // Handle not found error appropriately
+      } else {
+        throw new Error('Error deleting listing');
+      }
+    } catch (error) {
+      console.error('Error:', error.message);
+      // Handle other errors appropriately
+    }
+  };
+  
+
   return (
     <>
       <Topbar />
@@ -277,7 +314,7 @@ const LotManagement = () => {
                               <Button onClick={() => toggleEditModal(listing.lot_Id)}>Edit</Button>
                             </div>
                             <div style={{ margin: '5px', display: 'inline-block' }}>
-                              <Button variant='danger'>Delete</Button>
+                              <Button variant='danger' onClick={() => toggleDeleteModal(listing.lot_Id)}>Delete</Button>
                             </div>
                           </div>
                         </td>
@@ -408,6 +445,20 @@ const LotManagement = () => {
         <Modal.Body>
           <Image src={selectedImage} fluid />
         </Modal.Body>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal size="md" centered backdrop="static" show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Are you sure you want to delete this listing?</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>No</Button>
+          <Button variant="danger" onClick={handleDelete}>Yes</Button>
+        </Modal.Footer>
       </Modal>
     </>
   );
